@@ -13,9 +13,14 @@ class MySQL {
     return self::$db;
   }
 
-  static function query($task, $table, $matrixParams) {
+  static function query($task, $table, $matrixParams, $where='') {
 
     $parsedMatrixParams = self::parseMatrixParams($task, $matrixParams);
+
+    if( !empty($where) )
+    {
+      $parsedWhereParams = self::parseMatrixParams($task, $where);
+    }
 
     switch($task) {
       case 'insert':
@@ -32,7 +37,19 @@ class MySQL {
           $parsedMatrixParams['keysValues']
         );
         break;
+      case 'update':
+        $sql = self::buildUpdateQuery(
+          $table,
+          $parsedMatrixParams['keysValues'],
+          $parsedWhereParams['keysValues']
+        );
+        break;
     } // end switch
+
+    if( !empty( $_GET['debug'] ) )
+    {
+      print $sql;
+    }
 
     $res = mysql_query($sql);
 
@@ -49,6 +66,10 @@ class MySQL {
 
     return $ret;
 
+  }
+
+  private static function buildUpdateQuery($table, $keysValues, $where) {
+    return 'UPDATE ' . $table . ' SET ' . implode($keysValues, ', ') . ' WHERE ' . implode($where, ' AND ');
   }
 
   private static function buildInsertQuery($table, $keys, $values) {
@@ -76,23 +97,27 @@ class MySQL {
         {
           $selects[] = $keyValue[0];
         }
-        else if ($task !== 'select')
+        else if ($task === 'insert')
         {
           $keys[] = $keyValue[0];
           $values[] = '\'' . $keyValue[1] . '\'';
         }
-        else if ($task === 'select')
+        else if ($task === 'select' || $task === 'update')
         {
           $keysValues[] = $keyValue[0] . '=' . '\'' . $keyValue[1] . '\'';
         }
       }
 
-      if($task === 'select')
+      if($task !== 'insert')
       {
         $ret = array('keysValues' => $keysValues );
+      }
+
+      if($task === 'select')
+      {
         $ret['selects'] = $selects;
       }
-      else if ($task !== 'select')
+      else if ($task === 'insert')
       {
         $ret = array( 'keys' => $keys, 'values' => $values );
       }

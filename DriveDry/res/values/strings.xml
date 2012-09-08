@@ -6,5 +6,11 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="telenav">Telenav Page</string>
     <string name="settingslbl">Settings Page</string>
+    <string name="profilelbl">Profile Page</string>
+    <string name="username_hint">Username</string>
+    <string name="email_hint">Password</string>
+    <string name="signin_out_button">Sign in ...</string>
+    <string name="username">User</string>
+    <string name="signinlbl">Sign In</string>
 
 </resources>

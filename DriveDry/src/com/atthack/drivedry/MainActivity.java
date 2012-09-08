@@ -28,6 +28,8 @@ public class MainActivity extends Activity {
 	TextView odo;
 	TextView multip;
 	ToggleButton tb ;
+	ImageButton ProfileBtn;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,45 +90,9 @@ public class MainActivity extends Activity {
         //Log.e("display","h:"+display.getHeight()+"w"+display.getWidth());
         //mainb = (ImageView)findViewById(R.id.imageView1);
         //Log.e("display",mainb.get+"X"+mainb.getWidth());
-        new Thread()
-        {
-        	@Override
-        	public void run()
-        	{
-        		//Log.e("MainThread",HttpFetch.Get("http://www.google.com"));;
-        		
-        	}
-        }.start();
+        ProfileBtn = (ImageButton) findViewById(R.id.imageButton1);
+        ProfileBtn.setOnClickListener(profileclick);
         
-//        new Thread()
-//        {
-//        	@Override
-//        	public void run()
-//        	{
-//        		int n = 0;
-//        		while(n<60 && GlobalSettings.Run)
-//        		{
-//	        		GlobalSettings.Score += 100*GlobalSettings.Multiplier;
-//	        		Log.e("main","score:"+GlobalSettings.Score + " Multiplier "+GlobalSettings.Multiplier);
-//	        		//UpdateOdometer();
-//	        		try
-//	        		{
-//	        			Thread.sleep(1000);
-//	        		}
-//	        		catch(Exception e)
-//	        		{
-//	        			Log.e("main exception",e.getMessage());
-//	        			break;
-//	        		}
-//	        		n++;
-//        		}
-//        	}
-//        }.start();
-        //UpdateOdometer();
-        //
-        //IntentFilter ift = IntentFilter.create(action, dataType) 
-        //Context.registerReceiver(ls, null);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -161,5 +127,14 @@ public class MainActivity extends Activity {
 		multip.setText(" x"+String.valueOf(GlobalSettings.Multiplier));
 	}
 
-    
+	View.OnClickListener profileclick = new View.OnClickListener() {
+		
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			Intent i = new Intent(getBaseContext(),Profile.class);
+			startActivity(i);
+			
+		}
+	};
+
 }
