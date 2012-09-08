@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^api/(get|save-score|sign-in|register);([^/]+)$ php/api.php?action=$1&matrix_params=$2 [L]
