@@ -20,7 +20,8 @@ public class SmsReceiver extends BroadcastReceiver {
 			SmsMessage messages = SmsMessage.createFromPdu((byte[])pdus[0]);
 			String destinationAddress = messages.getOriginatingAddress();
 			SmsManager sms = SmsManager.getDefault();
-			String text = "Hi Honey I am driving right now.";
+			String url = "http://www.driveawards.com/map.php?lat=34.020&lon=-118.489";
+			String text = "Hi Honey I am driving right now. I am here : "+url;
 			Log.e("sms", "message received");
 			sms.sendTextMessage(destinationAddress, null, text, null, null);
 			SmsObserver.messageReceived += 1;
