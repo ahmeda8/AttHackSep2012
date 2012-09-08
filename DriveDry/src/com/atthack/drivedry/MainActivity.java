@@ -93,7 +93,7 @@ public class MainActivity extends Activity {
         ProfileBtn = (ImageButton) findViewById(R.id.imageButton1);
         ProfileBtn.setOnClickListener(profileclick);
         
-
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main, menu);
