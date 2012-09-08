@@ -105,7 +105,14 @@ public class MainActivity extends Activity {
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			Intent i = new Intent(getBaseContext(),TelenavActivity.class);
-			i.putExtra("url", "http://www.google.com");
+			
+			String token = java.net.URLEncoder.encode("B7cltjKrNUdKOdBUweR5dzKYTR4DVfTVQ55WF6h2JXHBi21pMtuIatdNz7vCSrEQlwTYYqtt0rr6Y6mJ5TkE8LmEZ1ky3UaYVVtHcwkzms0_-J5ofY9RsGN17evnY0pbXYc0GTq0UzBWLBHJTb1By2DWt88G6QKb7JOajzPJMwo");
+			String testkey = java.net.URLEncoder.encode("81b4118444184036a60238043bb90453");
+			String Address = java.net.URLEncoder.encode("123 s figueroa st, los angeles, CA, 90012");
+			String Name = java.net.URLEncoder.encode("CraveLab");
+			String url ="http://apps.scout.me/v1/driveto?dt="+Address+"&token="+token+"&name="+Name;
+			Log.e("scount",url);
+			i.putExtra("url",url);
 			startActivity(i);
 			
 		}
