@@ -25,6 +25,14 @@ public class SmsReceiver extends BroadcastReceiver {
 			Log.e("sms", "message received");
 			sms.sendTextMessage(destinationAddress, null, text, null, null);
 			SmsObserver.messageReceived += 1;
+			try
+			{
+			Thread.sleep(1000);
+			}
+			catch(Exception e)
+			{
+				Log.e("sms","sleep exception");
+			}
 			
 		}
 		GlobalSettings.Multiplier += 1;
