@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.content.*;
 
 
@@ -16,7 +17,7 @@ public class MainActivity extends Activity {
 
 	//SmsReceiver ls = new SmsReceiver();
 	ContentResolver cr;
-	Button Scout;
+	ImageButton Scout;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +26,7 @@ public class MainActivity extends Activity {
         cr =  this.getContentResolver();
         SmsObserver smo = new SmsObserver(new Handler());
         cr.registerContentObserver(Uri.parse("content://sms"), true, smo);
-        Scout = (Button) findViewById(R.id.button1);
+        Scout = (ImageButton) findViewById(R.id.button1);
         Scout.setOnClickListener(listner);
         new Thread()
         {
