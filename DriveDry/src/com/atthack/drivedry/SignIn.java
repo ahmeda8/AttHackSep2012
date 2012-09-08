@@ -37,7 +37,11 @@ public class SignIn extends Activity {
 		    String urlsstring = "http://www.driveaward.com/api/register;name=" + usertext + ";email=" + emailtext;
 		    Log.e("signin",urlsstring);
 		    String s = HttpFetch.Get(urlsstring);
+
 		    Log.e("signin","Result is"+s);
+		    GlobalSettings.Score = Integer.parseInt(HttpFetch.Get("http://www.driveawards.com/api/get;user_id=1;score").trim());
+		    Log.e("score",String.valueOf(GlobalSettings.Score));
+		    
 		   
 		}
 	};

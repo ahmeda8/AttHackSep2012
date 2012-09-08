@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
 				
 			GlobalSettings.Run = isChecked;
 			UpdateOdometer();
-    		
+			HttpFetch.Get("http://www.driveawards.com/api/set;score="+GlobalSettings.Score+"/where;user_id=1;score");
 			if(isChecked)
 			{
 				new Thread()
