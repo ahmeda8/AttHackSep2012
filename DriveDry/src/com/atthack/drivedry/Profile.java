@@ -2,6 +2,7 @@ package com.atthack.drivedry;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ public class Profile extends Activity {
 	TextView pointsfield;
 	TextView userfield;
 	Button SignOutBtn;
+	Button RewardsBtn;
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +29,9 @@ public class Profile extends Activity {
         
         SignOutBtn =(Button) findViewById(R.id.button1);
         SignOutBtn.setOnClickListener(signoutclick);
+        
+        RewardsBtn = (Button) findViewById(R.id.button2);
+        RewardsBtn.setOnClickListener(rewardsclick);
 
 //        later on this will check whether or not a user is logged in. For now, assume not.
         boolean isLoggedIn = false;
@@ -49,6 +54,16 @@ public class Profile extends Activity {
 		public void onClick(View v) {
 			Intent i = new Intent(getBaseContext(),SignIn.class);
 			startActivity(i);
+		}
+	};
+	
+	View.OnClickListener rewardsclick = new View.OnClickListener() {
+		
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://driveawards.com/rewards.html"));
+			startActivity(browserIntent);
+			
 		}
 	};
 }
