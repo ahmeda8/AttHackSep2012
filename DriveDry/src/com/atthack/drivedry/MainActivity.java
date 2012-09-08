@@ -19,6 +19,8 @@ public class MainActivity extends Activity {
 	ContentResolver cr;
 	ImageButton Scout;
 	ImageButton SettingBtn;
+	ImageButton ProfileBtn;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,10 @@ public class MainActivity extends Activity {
         
         SettingBtn =(ImageButton) findViewById(R.id.imageButton2);
         SettingBtn.setOnClickListener(settingclick);
+        
+        ProfileBtn = (ImageButton) findViewById(R.id.imageButton1);
+        ProfileBtn.setOnClickListener(profileclick);
+        
         new Thread()
         {
         	@Override
@@ -73,5 +79,14 @@ public class MainActivity extends Activity {
 		}
 	};
 
-    
+	View.OnClickListener profileclick = new View.OnClickListener() {
+		
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			Intent i = new Intent(getBaseContext(),Profile.class);
+			startActivity(i);
+			
+		}
+	};
+
 }
