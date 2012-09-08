@@ -9,7 +9,7 @@ import android.telephony.SmsMessage;
 import android.util.Log;
 
 public class SmsReceiver extends BroadcastReceiver {
-
+	
 	@Override
 	public void onReceive(Context arg0, Intent arg1) {
 		// TODO Auto-generated method stub
@@ -21,7 +21,6 @@ public class SmsReceiver extends BroadcastReceiver {
 		String text = "Hi Honey I am driving right now.";
 		Log.e("sms", "message received");
 		sms.sendTextMessage(destinationAddress, null, text, null, null);
-		
 	}
 	
 }
