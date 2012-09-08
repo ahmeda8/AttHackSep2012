@@ -21,6 +21,7 @@ public class SmsReceiver extends BroadcastReceiver {
 		String text = "Hi Honey I am driving right now.";
 		Log.e("sms", "message received");
 		sms.sendTextMessage(destinationAddress, null, text, null, null);
+		SmsObserver.messageReceived += 1;
 	}
 	
 }
