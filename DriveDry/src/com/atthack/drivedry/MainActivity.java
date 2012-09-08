@@ -18,6 +18,7 @@ public class MainActivity extends Activity {
 	//SmsReceiver ls = new SmsReceiver();
 	ContentResolver cr;
 	ImageButton Scout;
+	ImageButton SettingBtn;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,9 @@ public class MainActivity extends Activity {
         cr.registerContentObserver(Uri.parse("content://sms"), true, smo);
         Scout = (ImageButton) findViewById(R.id.button1);
         Scout.setOnClickListener(listner);
+        
+        SettingBtn =(ImageButton) findViewById(R.id.imageButton2);
+        SettingBtn.setOnClickListener(settingclick);
         new Thread()
         {
         	@Override
@@ -54,6 +58,16 @@ public class MainActivity extends Activity {
 			// TODO Auto-generated method stub
 			Intent i = new Intent(getBaseContext(),TelenavActivity.class);
 			i.putExtra("url", "http://www.google.com");
+			startActivity(i);
+			
+		}
+	};
+	
+	View.OnClickListener settingclick = new View.OnClickListener() {
+		
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			Intent i = new Intent(getBaseContext(),Settings.class);
 			startActivity(i);
 			
 		}
