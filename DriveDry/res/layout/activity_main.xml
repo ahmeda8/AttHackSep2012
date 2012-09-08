@@ -47,17 +47,18 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:src="@drawable/scout_btn" />
-
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
         android:layout_toLeftOf="@+id/imageButton3"
         android:layout_toRightOf="@+id/imageButton1"
         android:text="Odometer"
         android:textSize="30dp" />
-
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -65,6 +66,7 @@
         android:layout_alignLeft="@+id/imageButton3"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_marginLeft="5dp"
         android:text="xM"
         android:textSize="35dp" />
 
