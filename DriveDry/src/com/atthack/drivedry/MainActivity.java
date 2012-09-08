@@ -10,8 +10,11 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.ToggleButton;
 import android.content.*;
 
 
@@ -22,6 +25,9 @@ public class MainActivity extends Activity {
 	ImageButton Scout;
 	ImageButton SettingBtn;
 	ImageView mainb;
+	TextView odo;
+	TextView multip;
+	ToggleButton tb ;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +42,48 @@ public class MainActivity extends Activity {
         SettingBtn =(ImageButton) findViewById(R.id.imageButton3);
         SettingBtn.setOnClickListener(settingclick);
         
+        odo = (TextView)findViewById(R.id.textView2);
+		multip = (TextView)findViewById(R.id.textView3);
+		
+        tb = (ToggleButton)findViewById(R.id.toggleButton1);
         
+        UpdateOdometer();
+        tb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				// TODO Auto-generated method stub
+				
+			GlobalSettings.Run = isChecked;
+			UpdateOdometer();
+    		
+			if(isChecked)
+			{
+				new Thread()
+		        {
+		        	@Override
+		        	public void run()
+		        	{
+		        		int n = 0;
+		        		while(n<60 && GlobalSettings.Run)
+		        		{
+			        		GlobalSettings.Score += 100*GlobalSettings.Multiplier;
+			        		Log.e("main","score:"+GlobalSettings.Score + " Multiplier "+GlobalSettings.Multiplier);
+			        		try
+			        		{
+			        			Thread.sleep(1000);
+			        		}
+			        		catch(Exception e)
+			        		{
+			        			Log.e("main exception",e.getMessage());
+			        			break;
+			        		}
+			        		n++;
+		        		}
+		        	}
+		        }.start();
+			}
+			}
+		});
         //Display display = getWindowManager().getDefaultDisplay();
         //Log.e("display","h:"+display.getHeight()+"w"+display.getWidth());
         //mainb = (ImageView)findViewById(R.id.imageView1);
@@ -51,30 +98,31 @@ public class MainActivity extends Activity {
         	}
         }.start();
         
-        new Thread()
-        {
-        	@Override
-        	public void run()
-        	{
-        		int n = 0;
-        		while(n<60)
-        		{
-	        		GlobalSettings.Score += 100*GlobalSettings.Multiplier;
-	        		//Log.e("main","score:"+GlobalSettings.Score + " Multiplier "+GlobalSettings.Multiplier);
-	        		try
-	        		{
-	        			Thread.sleep(1000);
-	        		}
-	        		catch(Exception e)
-	        		{
-	        			Log.e("main exception",e.getMessage());
-	        			break;
-	        		}
-	        		n++;
-        		}
-        	}
-        }.start();
-        UpdateOdometer();
+//        new Thread()
+//        {
+//        	@Override
+//        	public void run()
+//        	{
+//        		int n = 0;
+//        		while(n<60 && GlobalSettings.Run)
+//        		{
+//	        		GlobalSettings.Score += 100*GlobalSettings.Multiplier;
+//	        		Log.e("main","score:"+GlobalSettings.Score + " Multiplier "+GlobalSettings.Multiplier);
+//	        		//UpdateOdometer();
+//	        		try
+//	        		{
+//	        			Thread.sleep(1000);
+//	        		}
+//	        		catch(Exception e)
+//	        		{
+//	        			Log.e("main exception",e.getMessage());
+//	        			break;
+//	        		}
+//	        		n++;
+//        		}
+//        	}
+//        }.start();
+        //UpdateOdometer();
         //
         //IntentFilter ift = IntentFilter.create(action, dataType) 
         //Context.registerReceiver(ls, null);
@@ -109,28 +157,8 @@ public class MainActivity extends Activity {
 	
 	private void UpdateOdometer()
 	{
-//		int score = GlobalSettings.Score;
-//		int a = score / 100000;
-//		score = score % 100000;
-//		int b = score / 10000;
-//		score = score % 10000;
-//		int c = score / 1000;
-//		score = score % 1000;
-//		int d = score / 100;
-//		score = score % 100;
-//		int e = score / 10;
-//		score = score % 10;
-//		
-//		ImageView a1 = (ImageView)findViewById(R.id.imageView2);
-//		ImageView a2 = (ImageView)findViewById(R.id.imageView3);
-//		ImageView a3 = (ImageView)findViewById(R.id.imageView4);
-//		ImageView a4 = (ImageView)findViewById(R.id.imageView5);
-//		ImageView a5 = (ImageView)findViewById(R.id.imageView6);
-//		ImageView a6 = (ImageView)findViewById(R.id.imageView7);
-//		
-//		Log.e("disp",String.valueOf(R.drawable.b1));
-//		a1.setBackgroundResource(R.drawable.b1);
-		
+		odo.setText(String.valueOf(GlobalSettings.Score));
+		multip.setText(" x"+String.valueOf(GlobalSettings.Multiplier));
 	}
 
     
