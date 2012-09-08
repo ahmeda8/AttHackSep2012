@@ -18,5 +18,12 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
+
+    public void testCommunication(int i) {
+	for(int j = 0;j<=i;j++) {
+	    Log.e("debug","this is a test message");
+	}
+    }
+
     
 }
