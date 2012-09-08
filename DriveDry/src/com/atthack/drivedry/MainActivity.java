@@ -58,11 +58,5 @@ public class MainActivity extends Activity {
 		}
 	};
 
-    public void testCommunication(int i) {
-	for(int j = 0;j<=i;j++) {
-	    Log.e("debug","this is a test message");
-	}
-    }
-
     
 }
