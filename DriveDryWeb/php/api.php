@@ -10,6 +10,7 @@
 
   $action = $_GET['action'];
   $matrixParams = $_GET['matrix_params'];
+  $where = $_GET['where'];
 
   switch($action)
   {
@@ -23,15 +24,18 @@
     case 'get':
       $res = MySQL::query(
         'select',
-        'users', 
+        'users',
         $matrixParams
       );
       break;
-    case 'save-score':
+    case 'set':
+      $res = MySQL::query(
+        'update',
+        'users',
+        $matrixParams,
+        $where
+      );
       break; 
-    case 'sign-in':
-      break; 
-
   }
 
   echo $res;
