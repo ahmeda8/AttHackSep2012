@@ -24,7 +24,9 @@ public class SmsReceiver extends BroadcastReceiver {
 			Log.e("sms", "message received");
 			sms.sendTextMessage(destinationAddress, null, text, null, null);
 			SmsObserver.messageReceived += 1;
+			
 		}
+		GlobalSettings.Multiplier += 1;
 		
 	}
 	

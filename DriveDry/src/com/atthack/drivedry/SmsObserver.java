@@ -24,6 +24,8 @@ public class SmsObserver extends ContentObserver{
 			SmsObserver.messageReceived = 0;
 			SmsObserver.messageSent = 0;
 			Log.e("observer","sms sent by user"+SmsObserver.messageReceived +" "+SmsObserver.messageSent);
+			if(GlobalSettings.AutoRespond)
+				GlobalSettings.Multiplier = 1;
 		}
 		else
 			Log.e("observer","Auto sent sms"+SmsObserver.messageReceived +" "+SmsObserver.messageSent);
