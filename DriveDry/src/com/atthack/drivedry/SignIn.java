@@ -2,6 +2,7 @@ package com.atthack.drivedry;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,6 +35,8 @@ public class SignIn extends Activity {
 			String usertext = usernamefield.getText().toString();
 			String emailtext = emailfield.getText().toString();
 			
+			GlobalSettings.username = usertext;
+			
 		    String urlsstring = "http://www.driveaward.com/api/register;name=" + usertext + ";email=" + emailtext;
 		    Log.e("signin",urlsstring);
 		    String s = HttpFetch.Get(urlsstring);
@@ -42,7 +45,8 @@ public class SignIn extends Activity {
 		    GlobalSettings.Score = Integer.parseInt(HttpFetch.Get("http://www.driveawards.com/api/get;user_id=1;score").trim());
 		    Log.e("score",String.valueOf(GlobalSettings.Score));
 		    
-		   
+		    Intent i = new Intent(getBaseContext(),MainActivity.class);
+			startActivity(i);
 		}
 	};
 }
