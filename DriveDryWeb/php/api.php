@@ -38,4 +38,4 @@
       break; 
   }
 
-  echo $res;
+  echo trim($res);
