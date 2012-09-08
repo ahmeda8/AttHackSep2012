@@ -2,17 +2,22 @@ package com.atthack.drivedry;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 import android.view.Menu;
+import android.content.*;
 
 
 public class MainActivity extends Activity {
 
+	//SmsReceiver ls = new SmsReceiver();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.e("start", "Launching");
+        Log.e("mainview", "Launching");
+        //IntentFilter ift = IntentFilter.create(action, dataType) 
+        //Context.registerReceiver(ls, null);
     }
 
     @Override
